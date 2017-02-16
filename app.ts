@@ -6,6 +6,19 @@ import {
     Component,
 } from '@angular/core';
 
+
+// Provides a `Product` object
+class Product {
+
+  constructor(
+    public sku: string,
+    public name: string,
+    public umageUrl: string,
+    public department: string[],
+    public price: number
+  ){}
+}
+
 @Component({
 
 })
