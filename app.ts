@@ -23,13 +23,24 @@ class Product {
   selector: "inventory-app",
   template: `
   <div class="inventory-app">
-    (Products will go here soon)
+    <h1>{{ product.name }}</h1>
+    <span>{{ product.sku }}</span>
   </div>
 `
 
 })
 class InventoryApp {
   // Inventory logic here
+  product: Product;
+
+  constructor(){
+    this.product = new Product(
+        'NICEHAT',
+        'A Nice Black Hat',
+        '/resources/images/products/black-hat.jpg',
+        ['Men', 'Accessories', 'Hats'],
+        29.99);
+  }
 }
 
 
