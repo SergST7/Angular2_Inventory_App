@@ -18,7 +18,7 @@
     <!-- Configure System.js, our module loader -->
     <script src="resources/systemjs.config.js"></script>
     <script>
-      System.import('app').catch(function(err){ console.error(err); });
+      System.import('app.js').catch(function(err){ console.error(err); });
     </script>
 
   </head>
@@ -39,7 +39,9 @@
 	  </div>
   </div>
 
-
+  <div class="ui main text container">
+	  <inventory-app>Loading...</inventory-app>
+  </div>
 
   </body>
 </html>

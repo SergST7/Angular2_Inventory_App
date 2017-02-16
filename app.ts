@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
 import {
-    Component,
+    Component
 } from '@angular/core';
 
 
@@ -20,6 +20,12 @@ class Product {
 }
 
 @Component({
+  selector: "inventory-app",
+  template: `
+  <div class="inventory-app">
+    (Products will go here soon)
+  </div>
+`
 
 })
 class InventoryApp {
@@ -27,6 +33,7 @@ class InventoryApp {
 }
 
 
+// module boot
 @NgModule({
   declarations: [
     InventoryApp
