@@ -18,6 +18,18 @@ class Product {
               public price: number) {
   }
 }
+/**
+ * @ProductImage: A component to show a single Product's image
+ */
+@Component({
+  selector: 'product-image',
+  inputs: ['produc'],
+  host: {'class':'image'},
+  template: `<img class="product-image" [src]="{{produc.imageUrl}}">`
+})
+class ProductImage{
+  produc: Product
+}
 
 /**
  * @ProductRow: A component for the view of single Product
@@ -27,19 +39,19 @@ class Product {
   inputs: ['prod'],
   host: {'class': 'item'},
   template: `
-      <div class="image">
-        <img src="{{prod.imageUrl}}">
-      </div>
+      <product-image 
+      [produc]="prod">
+      </product-image>
       <div class="content">
       <a class="header">{{ prod.name }}</a>
       <div class="meta">
-        <span>{{ prod.sku }}</span>
+        <div class="product-sku">SKU  #{{ prod.sku }}</div>
       </div>
       <div class="description">
-        <p>description</p>
+        <product-department [produc]="prod"></product-department>
       </div>
-      <div class="extra">{{ prod.price }}</div>
     </div>
+    <price [price]="prod.price"></price>
   `
 })
 class ProductRow {
