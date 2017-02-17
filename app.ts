@@ -3,7 +3,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
 import {
-    Component
+    Component,
+    EventEmitter
 } from '@angular/core';
 
 
@@ -24,7 +25,12 @@ class Product {
   inputs: ['listOfProduct'],
   outputs: ['onProductSelected'],
   template:`
-  
+    <div class="ui items">
+      <div class="ui item"
+        *ngFor="let productItem of listOfProduct">      
+        {{ productItem.sku }}
+      </div>
+    </div>
   `
 })
 class ProductList{
@@ -47,7 +53,8 @@ class ProductList{
 
   constructor(){
     this.onProductSelected = new EventEmitter()
-  }
+  };
+
 }
 
 @Component({
