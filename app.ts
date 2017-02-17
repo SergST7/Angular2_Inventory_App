@@ -136,7 +136,7 @@ class ProductList {
     this.onProductSelected = new EventEmitter()
   };
 
-  clickked(product: Product): void {
+  clicked(product: Product): void {
     this.currentProduct = product;
     console.log(product);
     this.onProductSelected.emit(product)
@@ -157,7 +157,7 @@ class ProductList {
   <div class="inventory-app">
     <product-list 
     [listOfProduct]="products"
-    (onProductSelected)="wasSelectProduct($events)">
+    (onProductSelected)="wasSelectProduct($event)">
     </product-list>   
   </div>
 `
