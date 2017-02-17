@@ -20,14 +20,46 @@ class Product {
 }
 
 @Component({
+  selector: 'product-list',
+  inputs: ['listOfProduct'],
+  outputs: ['onProductSelected'],
+  template:`
+  
+  `
+})
+class ProductList{
+  /**
+   * @input listOfProduct - the Product[] passed to us
+   */
+  listOfProduct: Product[];
+
+  /**
+   * @ouput onProductSelected - outputs the current
+   * Product whenever a new Product is selected
+   */
+  onProductSelected: EventEmitter<Product>;
+
+  /**
+    * @property currentProduct - local state containing
+    * the currently selected `Product`
+   */
+  currentProduct: Product;
+
+  constructor(){
+    this.onProductSelected = new EventEmitter()
+  }
+}
+
+@Component({
   selector: "inventory-app",
   template: `
   <div class="inventory-app">
-    <h1>{{ product.name }}</h1>
-    <span>{{ product.sku }}</span>
+    <product-list 
+    [listOfProduct]="products"
+    (onProductSelected)="wasSelectProduct($events)">
+    </product-list>   
   </div>
 `
-
 })
 class InventoryApp {
   // Inventory logic here
@@ -55,13 +87,18 @@ class InventoryApp {
           238.99)
     ]
   }
+
+  wasSelectProduct (product: Product):void {
+    console.log("Product selected is: ", product);
+  }
 }
 
 
 // module boot
 @NgModule({
   declarations: [
-    InventoryApp
+    InventoryApp,
+    ProductList
   ],
   imports: [ BrowserModule ],
   bootstrap: [ InventoryApp ]
