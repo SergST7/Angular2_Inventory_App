@@ -18,16 +18,51 @@ class Product {
               public price: number) {
   }
 }
+
 /**
  * @ProductImage: A component to show a single Product's image
  */
 @Component({
   selector: 'product-image',
   inputs: ['produc'],
-  host: {'class':'image'},
-  template: `<img class="product-image" [src]="{{produc.imageUrl}}">`
+  host: {'class': 'image'},
+  template: `<img class="product-image" [src]="produc.imageUrl">`
 })
-class ProductImage{
+class ProductImage {
+  produc: Product
+}
+
+/**
+ * @PriceDisplay: A component to show the price of a
+ * Product
+ */
+@Component({
+  selector: 'price',
+  inputs: ['price'],
+  template: `<div class="price-display"> \$ {{price}}</div>`
+})
+class Price {
+  price: number
+}
+
+/**
+ * @ProductDepartment: A component to show the breadcrumbs to a
+ * Product's department
+ */
+@Component({
+  selector: 'product-department',
+  inputs: ['produc'],
+  template: `
+    <div class="product-department">
+      <span 
+        *ngFor="let name of produc.department; let i=index" >
+        <a href="#">{{ name }}</a>
+        <span>{{i < (produc.department.length-1) ? '>' : ''}}</span>
+      </span>
+    </div>
+  `
+})
+class ProductDepartment {
   produc: Product
 }
 
@@ -165,7 +200,10 @@ class InventoryApp {
   declarations: [
     InventoryApp,
     ProductList,
-    ProductRow
+    ProductRow,
+    ProductImage,
+    Price,
+    ProductDepartment
   ],
   imports: [BrowserModule],
   bootstrap: [InventoryApp]
